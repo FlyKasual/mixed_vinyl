@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}
+{{ title }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+
+{# This is a comment #}
+
+<p>Hello there!</p>
+<ul>
+    {% for track in tracks %}
+        <li>{{ track.title }} – {{ track.artist }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
