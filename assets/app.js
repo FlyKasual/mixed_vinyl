@@ -10,3 +10,5 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+console.log('Ladies & gentleman, we have a lift-off!')
