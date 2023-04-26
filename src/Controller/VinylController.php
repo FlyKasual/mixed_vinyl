@@ -11,7 +11,7 @@ use function Symfony\Component\String\u;
 
 class VinylController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'app_home')]
     public function homeAction(): Response
     {
         $tracks = [
@@ -28,13 +28,17 @@ class VinylController extends AbstractController
         );
     }
 
-    #[Route('/browse/{genre}')]
+    #[Route('/browse/{genre}', name: 'app_browse')]
     public function browseAction(?string $genre = null): Response
     {
-        $title = '';
         if ($genre !== null) {
-            $title = u(str_replace('-', ' ', $genre))->title(true);
+            $genre = u(str_replace('-', ' ', $genre))->title(true);
         }
-        return new Response('Browse' . ($title ? ' ' . $title : ''));
+        return $this->render(
+            'vinyl/browse.html.twig',
+            [
+                'genre' => $genre
+            ]
+        );
     }
 }
