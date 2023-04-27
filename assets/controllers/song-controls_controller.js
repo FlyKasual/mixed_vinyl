@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import axios from 'axios'
 
 /*
  * This is an example Stimulus controller!
@@ -10,7 +11,15 @@ import { Controller } from '@hotwired/stimulus';
  * Delete this file or adapt it for your use!
  */
 export default class extends Controller {
-    connect() {
-        this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
+    static values = {
+        infoUrl: String
+    }
+    async play(evt) {
+        evt.preventDefault()
+
+        const { data: { url }} = await axios.get(this.infoUrlValue)
+        console.log(url)
+        const audio = new Audio(url)
+        audio.play()
     }
 }
